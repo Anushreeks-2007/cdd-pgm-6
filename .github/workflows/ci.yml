@@ -1,0 +1,19 @@
+name: CI Workflow
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  check-message:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check message file
+        run: |
+          test -f message.txt
+          grep -q "Hello from CI/CD lab" message.txt
+          echo "Message file check passed"
